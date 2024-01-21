@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <string.h>
 
-#define PATH "./A_path_finder"
+#define PATH "./AStarAlgorithm"
 #define MTRUE "true"
 #define MFALSE "false"
 
