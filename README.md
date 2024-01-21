@@ -1,2 +1,1 @@
-# A STAR
 # AStar
