@@ -4,8 +4,8 @@
 A* algorithm created in C with real-time graphic display using to Raylib. 
 - Press "R" to regenare the Start end End points.
 - Press "Enter" to pause and play the algorithm.
-By default the program pause the algorithm at the beginnig.
 
+By default the program pause the algorithm at the beginnig.
 
 
 ## Installation
@@ -24,6 +24,7 @@ Alternately if you want to run the project as deamon:
   ./build.sh
   ./A_path_finder true
 ```
+
 ## Globals and variables
 
 Globals:
