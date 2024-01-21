@@ -227,11 +227,11 @@ int main(int argc, char * argv[]){
     if(draw_final_route && finish && exist_route){
       int len = 0;
       drawFinalRouteRec(map, start, end, &len);
-      printf("[INFO] Nodi totali: %d\n", len);
-      printf("[INFO] Nodi idealmente minimi: %d\n", abs(start.x - end.x) + abs(start.y - end.y) - 1);
+      printf("[INFO] Total nodes: %d\n", len);
+      printf("[INFO] Ideally minimal nodes: %d\n", abs(start.x - end.x) + abs(start.y - end.y) - 1);
       draw_final_route = false;
       int numEnds = freeList(openSet);
-      printf("[INFO] Elimino %d elementi dalla lista\n", numEnds);
+      printf("[INFO] Removing %d elements from the linked list\n", numEnds);
       //return 0;
     }
 
@@ -297,7 +297,7 @@ int main(int argc, char * argv[]){
 
               ptr_node new_node = generateNode(neighbor_cord,  fscore[(int) neighbor_cord.x][(int) neighbor_cord.y] , NULL);
               if(new_node == NULL){
-                printf("Malloc fallita\n");
+                printf("Malloc failed\n");
                 return 1;
               }
               openSet = addInOrder(openSet, new_node);
@@ -496,7 +496,7 @@ int freeList(ptr_node openSet){
     temp = trash->next;
     free(trash);
     #ifdef PRINT_TRASH
-     printf("trash -> %p\n", trash);
+     printf("[INFO] trash -> %p\n", trash);
     #endif /* ifdef PRINT_TRASH */
     trash = temp;
   }
