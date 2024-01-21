@@ -24,12 +24,20 @@ How to install my-project:
   ./build.sh
   ./AStarAlgorithm
 ```
-Alternately if you want to run the project as deamon:
+If you don't want Raylib logs:
 
 ```bash
   chmod +x build.sh
   ./build.sh
   ./AStarAlgorithm true
+```
+
+If you want to run the project as deamon:
+
+```bash
+  chmod +x build.sh
+  ./build.sh
+  ./Run true
 ```
 
 ## Globals and variables
