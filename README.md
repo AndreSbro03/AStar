@@ -9,6 +9,10 @@ By default the program pause the algorithm at the beginnig.
 
 All logs and comments are in Italian because I didn't think of making the project public, but a lot of that are translated down here.
 
+## Screenshots
+
+![App Screenshot](https://github.com/AndreSbro03/AStar/blob/main/screenshot.png)
+
 ## Installation
 
 How to install my-project:
