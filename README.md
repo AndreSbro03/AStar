@@ -7,6 +7,7 @@ A* algorithm created in C with real-time graphic display using to Raylib.
 
 By default the program pause the algorithm at the beginnig.
 
+All logs and comments are in Italian because I didn't think of making the project public.
 
 ## Installation
 
