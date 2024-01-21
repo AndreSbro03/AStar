@@ -5,7 +5,9 @@ Customizable A* algorithm created in C with real-time graphic display using to R
 - Press "R" to regenare the Start end End points.
 - Press "Enter" to pause and play the algorithm.
 
-By default the program pause the algorithm at the beginnig.
+By default the program pause the algorithm at the beginnig. 
+
+Needs Raylib to work (https://www.raylib.com/).
 
 All comments are in Italian because I didn't think of making the project public, but all the importants ones are translated down here.
 
