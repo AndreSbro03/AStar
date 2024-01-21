@@ -19,7 +19,7 @@
                                       // 0.95 sembra essere un ottimo valore
 
 //RANDOMNESS
-#define R_RANDOMNESS 3               // 1/R_RANDOMNESS è la possibilità che una casella sia un blocco 
+#define R_RANDOMNESS 4               // 1/R_RANDOMNESS è la possibilità che una casella sia un blocco 
 
 #define REG_POINT                     // Se definito premendo "R" è possibile rigenerare randomicamente la posizione di Start e End 
 //#define PRINT_FINAL_ROUTE           // Se definito stampa a terminale una lista di tutti i nodi attraversati dalla route finale
@@ -162,6 +162,10 @@ int main(int argc, char * argv[]){
         openSet->fscore = dst(start.x, start.y, end.x, end.y);
       }
     #endif
+  
+    if(IsKeyPressed(KEY_S)){
+      TakeScreenshot("screenshot.png");
+    } 
 
     if(IsKeyPressed(KEY_ENTER)){ 
       pause = !pause;
