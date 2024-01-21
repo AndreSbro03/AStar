@@ -1,7 +1,7 @@
 
-# A* Algorithm
+# Visual A* Algorithm
 
-A* algorithm created in C with real-time graphic display using to Raylib. 
+Customizable A* algorithm created in C with real-time graphic display using to Raylib. 
 - Press "R" to regenare the Start end End points.
 - Press "Enter" to pause and play the algorithm.
 
@@ -20,14 +20,14 @@ How to install my-project:
 ```bash
   chmod +x build.sh
   ./build.sh
-  ./A_path_finder
+  ./AStarAlgorithm
 ```
 Alternately if you want to run the project as deamon:
 
 ```bash
   chmod +x build.sh
   ./build.sh
-  ./A_path_finder true
+  ./AStarAlgorithm true
 ```
 
 ## Globals and variables
