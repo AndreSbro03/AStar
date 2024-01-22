@@ -157,7 +157,21 @@ int main(int argc, char * argv[]){
   
     if(IsKeyPressed(KEY_S)){
       TakeScreenshot("screenshot.png");
-    } 
+    }
+
+    if(IsMouseButtonDown(MOUSE_BUTTON_RIGHT)){
+      Vector2 mouseP = GetMousePosition();
+      if(map[(int) mouseP.x / C_DIM][(int) mouseP.y / C_DIM] == C_BLOCK){
+        map[(int) mouseP.x / C_DIM][(int) mouseP.y / C_DIM] = C_EMPTY;
+      }
+    }
+
+    if(IsMouseButtonDown(MOUSE_BUTTON_LEFT)){
+      Vector2 mouseP = GetMousePosition();
+      if(map[(int) mouseP.x / C_DIM][(int) mouseP.y / C_DIM] == C_EMPTY){
+        map[(int) mouseP.x / C_DIM][(int) mouseP.y / C_DIM] = C_BLOCK;
+      }
+    }
 
     if(IsKeyPressed(KEY_ENTER)){ 
       pause = !pause;
