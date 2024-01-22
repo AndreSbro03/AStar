@@ -74,6 +74,7 @@ Vector2 RandomizePoint(int map[][C_NUMY], int x_max, int y_max);
 // Funzioni per inizializzare l'array con il valore passato
 void initializeArrayF(float arr[][C_NUMY], int x_max, int y_max, int value);
 void initializeArrayV(Vector2 arr[][C_NUMY], int x_max, int y_max, Vector2 vector);
+void initializeStartEnd(int map[][C_NUMY], Vector2 start, Vector2 end);
 
 // Return distance of two points
 float dst(int x1, int y1, int x2, int y2);
@@ -120,11 +121,6 @@ int main(int argc, char * argv[]){
     Vector2 end = {C_NUMX - 1.0, C_NUMY - 1.0};
   #endif
 
-  printf("[INFO] Start -> (%f %f)\n", start.x, start.y);
-  map[(int) start.x][(int) start.y] = C_START;
-  printf("[INFO] End -> (%f %f)\n", end.x, end.y);
-  map[(int) end.x][(int) end.y] = C_END;
-
   bool pause = true;              // A* in pausa
   bool finish = false;            // A* ha finito
   bool draw_final_route = true;   // E' necessario disegnare la route alla fine (una volta disegnata questo valore viene posto a false)
@@ -136,27 +132,23 @@ int main(int argc, char * argv[]){
   initializeArrayF(gscore, C_NUMX, C_NUMY, -1.0);
   initializeArrayF(fscore, C_NUMX, C_NUMY, -1.0);
   initializeArrayV(cmfrom, C_NUMX, C_NUMY, (Vector2) {-1, -1});
+  initializeStartEnd(map, start, end);
   
-  gscore[(int) start.x][(int) start.y] = 0;
-  fscore[(int) end.y][(int) end.y] = dst(start.x, start.y, end.x, end.y);
-
   // SetConfigFlags(FLAG_WINDOW_RESIZABLE); -> window resizable
   InitWindow(S_DIMX, S_DIMY, "A*");
   
   while(!WindowShouldClose()){
       
     #ifdef REG_POINT
-      if(IsKeyPressed(KEY_R)){
+      if(IsKeyPressed(KEY_R) && !finish){
         map[(int) start.x][(int) start.y] = C_EMPTY;
         map[(int) end.x][(int) end.y] = C_EMPTY;
+        gscore[(int) start.x][(int) start.y] = -1.0;
+        fscore[(int) end.y][(int) end.y] = -1.0; 
 
         start = RandomizePoint(map, C_NUMX, C_NUMY);
-        map[(int) start.x][(int) start.y] = C_START;
         end = RandomizePoint(map, C_NUMX, C_NUMY);
-        map[(int) end.x][(int) end.y] = C_END; 
-
-        printf("[INFO] Start -> (%f %f)\n", start.x, start.y);
-        printf("[INFO] End -> (%f %f)\n", end.x, end.y);
+        initializeStartEnd(map, start, end);
 
         openSet->cord = start;
         openSet->fscore = dst(start.x, start.y, end.x, end.y);
@@ -210,15 +202,6 @@ int main(int argc, char * argv[]){
         }
 
         DrawRectangle(i * C_DIM, j * C_DIM, C_DIM, C_DIM, cl);
-        /*
-        if(j == 0 && map[i][j] == C_OPEN_R){
-          printf("(%d %d)\n", i, j);  
-        }
-
-        char buffer[256];
-        snprintf(buffer, sizeof(buffer), "%d", j);
-        DrawText(buffer, i * C_DIM, j * C_DIM, C_DIM / 2, PURPLE);
-        */
       }
     }
 
@@ -228,7 +211,7 @@ int main(int argc, char * argv[]){
       int len = 0;
       drawFinalRouteRec(map, start, end, &len);
       printf("[INFO] Total nodes: %d\n", len);
-      printf("[INFO] Ideally minimal nodes: %d\n", abs(start.x - end.x) + abs(start.y - end.y) - 1);
+      printf("[INFO] Ideally minimal nodes: %d\n", abs((int) (start.x - end.x)) + abs((int) (start.y - end.y)) - 1);
       draw_final_route = false;
       int numEnds = freeList(openSet);
       printf("[INFO] Removing %d elements from the linked list\n", numEnds);
@@ -304,14 +287,6 @@ int main(int argc, char * argv[]){
 
               if(elem != C_START && elem != C_END){ 
                 map[(int) neighbor_cord.x][(int) neighbor_cord.y] = C_OPEN_R;
-
-                /*
-                for(int i = 0; i < C_NUMX; ++i){
-                    printf("%d|", map[i][0]);
-                  }
-                printf(" -> (%d %f) %d\n", (int) neighbor_cord.y, neighbor_cord.y, C_NUMY);
-                */
-
               }
             
             } // end if gtent
@@ -329,7 +304,7 @@ int main(int argc, char * argv[]){
     // Se la lista di percorsi avviabili e nulla ma l'algoritmo non è ancora arrivato alla fine significa che è impossibile
     // raggiungere la fine dal punto desiderato.
     if(openSet == NULL && finish == false){
-      printf("[INFO] Impossible to calculate a route. I'm stuck step function!\n");
+      printf("[ERR] Impossible to calculate a route. I'm stuck step function!\n");
       finish = true;
       exist_route = false;
       int numEnds = freeList(openSet);
@@ -342,6 +317,19 @@ int main(int argc, char * argv[]){
   CloseWindow();
 
   return 0;
+}
+
+void initializeStartEnd(int map[][C_NUMY], Vector2 start, Vector2 end){
+
+  printf("[INFO] Start -> (%d, %d)\n", (int) start.x, (int) start.y);
+  map[(int) start.x][(int) start.y] = C_START;
+
+  printf("[INFO] End -> (%d, %d)\n", (int) end.x, (int) end.y);
+  map[(int) end.x][(int) end.y] = C_END;
+
+  gscore[(int) start.x][(int) start.y] = 0;
+  fscore[(int) end.y][(int) end.y] = dst(start.x, start.y, end.x, end.y);
+
 }
 
 int RandomizeObstacles(int map[][C_NUMY], int x_max, int y_max, int randomness){
