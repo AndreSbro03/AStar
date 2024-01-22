@@ -19,7 +19,7 @@
                                       // 0.95 sembra essere un ottimo valore
 
 //RANDOMNESS
-#define R_RANDOMNESS 3.5               // 1/R_RANDOMNESS è la possibilità che una casella sia un blocco 
+#define R_RANDOMNESS 4               // 1/R_RANDOMNESS è la possibilità che una casella sia un blocco 
 
 #define REG_POINT                     // Se definito premendo "R" è possibile rigenerare randomicamente la posizione di Start e End 
 //#define PRINT_FINAL_ROUTE           // Se definito stampa a terminale una lista di tutti i nodi attraversati dalla route finale
@@ -211,7 +211,7 @@ int main(int argc, char * argv[]){
       int len = 0;
       drawFinalRouteRec(map, start, end, &len);
       printf("[INFO] Total nodes: %d\n", len);
-      printf("[INFO] Ideally minimal nodes: %d\n", abs((int) (start.x - end.x)) + abs((int) (start.y - end.y)) - 1);
+      printf("[INFO] Ideally minimal nodes: %d\n", abs((int) (start.x - end.x)) + abs((int) (start.y - end.y)) - 1 + 2); // Togliamo il punto che fa angolo e aggiungiamo l'inzio e la fine stessi
       draw_final_route = false;
       int numEnds = freeList(openSet);
       printf("[INFO] Removing %d elements from the linked list\n", numEnds);
