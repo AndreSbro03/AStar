@@ -12,19 +12,19 @@
 #define S_DIMX (S_DIMY * 16) / 9      // Dimensione schermo (16 : 9)
 
 //CELLS
-#define C_DIM 8                       // Dimensione in pixel casella
+#define C_DIM 16                       // Dimensione in pixel casella
 #define C_NUMX (int) S_DIMX / C_DIM   // Numero caselle asse X
 #define C_NUMY (int) S_DIMY / C_DIM   // Numero caselle asse Y
-#define DST 0.75                      // Peso della distanza tra due celle consecutive. Peso più piccolo calcolo più veloce ma risultato meno preciso
+#define DST 0.95                      // Peso della distanza tra due celle consecutive. Peso più piccolo calcolo più veloce ma risultato meno preciso
                                       // 0.95 sembra essere un ottimo valore
 
 //RANDOMNESS
-#define R_RANDOMNESS 4               // 1/R_RANDOMNESS è la possibilità che una casella sia un blocco 
+#define R_RANDOMNESS 3.5               // 1/R_RANDOMNESS è la possibilità che una casella sia un blocco 
 
 #define REG_POINT                     // Se definito premendo "R" è possibile rigenerare randomicamente la posizione di Start e End 
 //#define PRINT_FINAL_ROUTE           // Se definito stampa a terminale una lista di tutti i nodi attraversati dalla route finale
 //#define PRINT_TRASH                 // Se definito vengono stampati tutti gli indirizzi dei nodi eliminati (debug)
-#define RANDOM_SPAWN false            // Se vero Start e End vengono generati randomicamente
+#define RANDOM_SPAWN true            // Se vero Start e End vengono generati randomicamente
 #define STEP_DST true                 // Se vero la funzione distanza sarà applicata ad una griglia, se falso teorema di pitagora
 
 // La tabella sotto riportata mostra come usare una funzione che calcola la distanza tra due punti su una griglia 
@@ -163,14 +163,14 @@ int main(int argc, char * argv[]){
       Vector2 mouseP = GetMousePosition();
       if(map[(int) mouseP.x / C_DIM][(int) mouseP.y / C_DIM] == C_BLOCK){
         map[(int) mouseP.x / C_DIM][(int) mouseP.y / C_DIM] = C_EMPTY;
-      }
+      };
     }
 
     if(IsMouseButtonDown(MOUSE_BUTTON_LEFT)){
       Vector2 mouseP = GetMousePosition();
-      if(map[(int) mouseP.x / C_DIM][(int) mouseP.y / C_DIM] == C_EMPTY){
+       if(map[(int) mouseP.x / C_DIM][(int) mouseP.y / C_DIM] == C_EMPTY){
         map[(int) mouseP.x / C_DIM][(int) mouseP.y / C_DIM] = C_BLOCK;
-      }
+      };
     }
 
     if(IsKeyPressed(KEY_ENTER)){ 
@@ -289,7 +289,7 @@ int main(int argc, char * argv[]){
 
               if(elem == 5){ //-> elemento già in openSet
                //elimino il vecchio elemento
-                ptr_node openSet = rmNodeByCord(openSet, neighbor_cord);
+                openSet = rmNodeByCord(openSet, neighbor_cord);
               }
 
               ptr_node new_node = generateNode(neighbor_cord,  fscore[(int) neighbor_cord.x][(int) neighbor_cord.y] , NULL);

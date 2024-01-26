@@ -2,8 +2,11 @@
 # Visual A* Algorithm
 
 Customizable A* algorithm created in C with real-time graphic display using to Raylib. 
+
 - Press "R" to regenare the Start end End points.
 - Press "Enter" to pause and play the algorithm.
+- You can add new obstacles with the left button of the mouse.
+- You can remove obstacles with the right button of the mouse.
 
 By default the program pause the algorithm at the beginnig. 
 
