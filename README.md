@@ -20,27 +20,29 @@ All comments are in Italian because I didn't think of making the project public,
 
 ## Installation
 
-How to install my-project:
+Download the repository and execute:
 
 ```bash
   chmod +x build.sh
   ./build.sh
+```
+
+How to run my-project:
+
+```bash
   ./AStarAlgorithm
 ```
+
 If you don't want Raylib logs:
 
 ```bash
-  chmod +x build.sh
-  ./build.sh
   ./AStarAlgorithm true
 ```
 
 If you want to run the project as deamon:
 
 ```bash
-  chmod +x build.sh
-  ./build.sh
-  ./Run true
+  ./RunAsDeamon true
 ```
 
 ## Globals and variables
