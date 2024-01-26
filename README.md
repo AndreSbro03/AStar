@@ -16,7 +16,7 @@ All comments are in Italian because I didn't think of making the project public,
 
 ## Screenshots
 
-![App Screenshot](https://github.com/AndreSbro03/AStar/blob/main/screenshot.png)
+![App Screenshot](https://github.com/AndreSbro03/AStar/blob/main/screen.png)
 
 ## Installation
 
