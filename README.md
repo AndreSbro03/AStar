@@ -1,75 +1,86 @@
 
-# Visual A* Algorithm
+# Visual A* Algorithm 🚀🔍
 
-Customizable A* algorithm created in C with real-time graphic display using to Raylib. 
+A customizable **A\*** algorithm written in **C** with real-time graphical display using **Raylib**. This project allows you to visualize the A* search algorithm and interact with the grid by adding or removing obstacles, regenerating start and end points, and controlling the algorithm's execution.
 
-- Press "R" to regenare the Start end End points.
-- Press "Enter" to pause and play the algorithm.
-- You can add new obstacles with the left button of the mouse.
-- You can remove obstacles with the right button of the mouse.
+### Key Features
+- 🕹 **Interactive Controls**:
+  - Press **"R"** to regenerate the start and end points.
+  - Press **"Enter"** to pause or resume the algorithm.
+  - **Add obstacles** with the left mouse button.
+  - **Remove obstacles** with the right mouse button.
+- ⏸ **Paused by Default**: The algorithm starts in a paused state, allowing you to set up the environment before starting.
+- 💻 **Real-time Visualization**: See the A* algorithm in action as it finds the optimal path on the grid.
+  
+Built using **Raylib**, a simple and easy-to-use library for handling graphics. You can learn more about it [here](https://www.raylib.com/).
 
-By default the program pause the algorithm at the beginnig. 
-
-Needs Raylib to work (https://www.raylib.com/).
-
-All comments are in Italian because I didn't think of making the project public, but all the importants ones are translated down here.
-
-## Screenshots
+### Screenshots
 
 ![App Screenshot](https://github.com/AndreSbro03/AStar/blob/main/screen.png)
 
-## Installation
+## Installation & Running the Program
 
-Download the repository and execute:
+### Prerequisites
+Ensure you have **Raylib** installed on your machine. You can find installation instructions on the official [Raylib website](https://www.raylib.com/).
 
-```bash
-  chmod +x build.sh
-  ./build.sh
-```
+### Installation
+To download and run the project, follow these steps:
 
-How to run my-project:
+1. Clone the repository and navigate to the project folder.
+2. Make the build script executable and run it:
+  
+  ```bash
+    chmod +x build.sh
+    ./build.sh
+  ```
 
-```bash
-  ./AStarAlgorithm
-```
+After building, you can run the program with:
 
-If you don't want Raylib logs:
+  ```bash
+    ./AStarAlgorithm
+  ```
 
-```bash
+### Optional Commands
+
+You can run the program with additional options for different use cases:
+
+- **Run without Raylib logs**:  
+  Suppress Raylib's log output by adding `true` as an argument:
+  
+  ```bash
   ./AStarAlgorithm true
-```
+  ```
 
-If you want to run the project as deamon:
+- **Run as deamon**:  
+  To run the program in the background (daemon mode), use the following command:
 
-```bash
-  ./RunAsDeamon true
-```
+  ```bash
+    ./RunAsDeamon true
+  ```
 
-## Globals and variables
+## Globals and Variables
 
-Globals:
+### Global Parameters
 
-- `S_DIMX` and `S_DIMY` are the dimensions of the screen.
+- **`S_DIMX`** & **`S_DIMY`**: Define the dimensions of the window (screen size).
+- **`C_DIM`**: Specifies the cell size in pixels, determining the grid resolution.
+- **`DST`**: This constant indicates the cost of moving between two consecutive cells. A higher value means more paths are explored, resulting in a more accurate solution but slower performance. Values between `0.5` and `0.95` work best.
+- **`R_RANDOMNESS`**: The probability that a cell is a solid block, defined as `1/R_RANDOMNESS`.
+- **`REG_POINT`**: If enabled, pressing "R" will regenerate the start and end points randomly.
+- **`PRINT_FINAL_ROUTE`**: If enabled, prints the list of nodes in the final path to the terminal.
+- **`RANDOM_SPAWN`**: When set to `true`, the start and end points are generated randomly. If `false`, they are placed at opposite corners of the grid.
+- **`STEP_DST`**: If `true`, the distance function operates on a grid (Manhattan distance). If `false`, the map behaves as a graph, calculating distances using the Pythagorean theorem (Euclidean distance), which is slower.
 
-- `C_DIM` is the cell size in pixels.
+### Variables
 
-- `DST` more delicate constant, indicates the cost of crossing two consecutive cells. This value is added to the distance from the origin each time you continue a route. If it were 1 suboptimal paths but close to the origin would be developed instead of better paths but further from the origin. The higher a value, the more paths considered, therefore the solution will be more valid but the algorithm will be slower. Vice versa with values ​​closer to 0. Optimal values ​​are between 0.5 and 0.95. 
+- **`pause`**: Initially set to `true`, meaning the algorithm is paused by default and will only start when you press "Enter".
+- **`draw_final_route`**: If `true` (default), the final route is visually displayed on the grid after the algorithm completes.
 
-- `R_RANDOMNESS` 1/R_RANDOMNESS is the possibility that a cell is a solid block.
-
-- `REG_POINT` if defined by pressing "R" you can randomly regenerate the position of Start and End.
-
-- `PRINT_FINAL_ROUTE` if defined it prints to the terminal a list of all the nodes crossed by the final route.
-
-- `RANDOM_SPAWN` if true Start and End are generated randomly, otherwise by default they are generated at opposite ends of the map.
-
-- `STEP_DST` if true the distance function will be applied to a grid, if false the map will be like a graph and therefore the Pythagorean theorem will be used (slower method).
-
-Variables:
-- `pause` default as true it means that you have to start yourself the algorithm by pressing "Enter".
-
-- `draw_final_route` if true (default) the program will draw the final route.
 
 ## Acknowledgements
 
- - [A* algorithm description]  https://en.wikipedia.org/wiki/A*_search_algorithm
+This project was inspired by the [A* algorithm description](https://en.wikipedia.org/wiki/A*_search_algorithm) and aims to provide an interactive visualization of this classic pathfinding algorithm. 
+
+Special thanks to the **Raylib** library for simplifying the graphical interface and making real-time rendering possible. You can learn more about Raylib [here](https://www.raylib.com/).
+
+Feel free to contribute, explore the code, or provide feedback to help improve the project!
